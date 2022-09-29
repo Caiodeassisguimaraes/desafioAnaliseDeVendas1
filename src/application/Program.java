@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import entities.Sales;
 
@@ -22,6 +23,7 @@ public class Program {
 		String path = sc.nextLine();
 		
 		
+		
 
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 						
@@ -32,8 +34,13 @@ public class Program {
 				line = br.readLine();
 			}
 			
-			listSales.sort((sales1, sales2) -> sales1.getYear().compareTo(sales2.getYear()));
-			listSales.stream().forEach(s -> System.out.println(s));
+			listSales.stream().filter(s -> s.getYear().equals(2016)).sorted((sales1, sales2) -> -sales1.averagePrice().compareTo(sales2.averagePrice())).collect(Collectors.toList()).forEach(System.out::println);
+			
+			//.limit(5)
+			
+			//listSales.sort((sales1, sales2) -> -sales1.averagePrice().compareTo(sales2.averagePrice()));
+			//listSales.stream().forEach(s -> System.out.println(s));
+			//listSales.forEach(System.out::println);
 			
 			/*for (Sales s : listSales) {
 				System.out.println(s);
