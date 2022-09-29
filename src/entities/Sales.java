@@ -1,6 +1,6 @@
 package entities;
 
-public class Sales implements Comparable<Sales> {
+public class Sales {
 
 	private Integer month;
 	private Integer year;
@@ -57,16 +57,13 @@ public class Sales implements Comparable<Sales> {
 	}
 
 	public Double averagePrice() {
-		return total/ items;
+		return total / items;
 	}
 
 	@Override
 	public String toString() {
-		return month + "/" + year + ", " + seller + ", " + items + ", pm = " + String.format("%.2f", averagePrice());
+		return month + "/" + year + ", " + seller + ", " + items + ", " + total + ", pm = "
+				+ String.format("%.2f", averagePrice());
 	}
 
-	@Override
-	public int compareTo(Sales other) {
-		return -averagePrice().compareTo(other.averagePrice());
-	}
 }
